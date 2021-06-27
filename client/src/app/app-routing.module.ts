@@ -1,3 +1,4 @@
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
     children: [
       { path: 'members', component:MemberListComponent },
       { path: 'members/:username', component:MemberDetailComponent },
+      { path: 'member/edit', component:MemberEditComponent },
       { path: 'lists', component:ListsComponent },
       { path: 'messages', component:MessagesComponent }
       
