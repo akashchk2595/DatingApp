@@ -1,0 +1,11 @@
+<h4>Internal Server Error</h4>
+<ng-container *ngIf="error">
+    <h5 class="text-danger">
+        Error: {{error.message}}
+    </h5>
+    <p class="font weight-bold">
+        Note: There is an error occurred while translation in the server.
+    </p>
+    <p>Stack Trace:</p>>
+    <code class="mt-5" style="background-color:smoke">{{error.details}}</code>
+</ng-container>
