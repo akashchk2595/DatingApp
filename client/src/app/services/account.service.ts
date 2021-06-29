@@ -18,8 +18,7 @@ export class AccountService {
       const user = res;
       if(user)
       {
-        localStorage.setItem('user', JSON.stringify(user));
-        this.currentUserSource.next(user);
+        this.setCurrentUser(user);
       }
     }));
   }
@@ -28,8 +27,7 @@ export class AccountService {
       const user = res;
       if(user)
       {
-        localStorage.setItem('user', JSON.stringify(user));
-        this.currentUserSource.next(user);
+        this.setCurrentUser(user);
       }
       return user;
     }));
@@ -38,7 +36,8 @@ export class AccountService {
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
   }
-  setCurrentUser(model: User) {
-    this.currentUserSource.next(model);
+  setCurrentUser(user: User) {
+    localStorage.setItem('user', JSON.stringify(user));
+    this.currentUserSource.next(user);
   }
 }
