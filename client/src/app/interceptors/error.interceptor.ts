@@ -17,7 +17,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
-      catchError(error => {
+      catchError(error => { 
         if(error){
           switch (error.status){
             case 400:
@@ -29,8 +29,12 @@ export class ErrorInterceptor implements HttpInterceptor {
                   }
                 }
                 throw modelStateError.flat();
-              } else {
-                this.toastr.error('Unauthorized', error.status);
+                 
+              } else if(typeof(error.error) === 'object') {
+                this.toastr.error(error.statusText, error.status);
+              }
+              else{
+                this.toastr.error(error.error, error.status);
               }
               break;
             case 401:
